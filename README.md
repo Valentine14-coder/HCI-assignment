@@ -2,17 +2,17 @@
 
 A user-centered Django web application that improves communication, issue reporting, progress tracking, and access to reliable local information for residents in communities.
 
-## 🎯 Overview
+ Overview
 
 **FixMyCommunity** is a system designed to address the challenges residents face in reporting and tracking service delivery issues such as:
-- 💧 Water leaks
-- ⚡ Electricity faults
-- 🚗 Potholes
-- 🗑️ Waste collection problems
+-  Water leaks
+- Electricity faults
+-  Potholes
+-  Waste collection problems
 
 The platform provides a straightforward, interactive system that enhances communication between communities and service providers.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 FixMyCommunity/
@@ -45,7 +45,7 @@ FixMyCommunity/
 └── env/                          # Virtual environment
 ```
 
-## 🔧 Apps Overview
+##  Apps Overview
 
 ### 1. **Issues App**
 Handles the reporting and tracking of service delivery issues.
@@ -86,8 +86,6 @@ Manages community information and provides access to reliable local data.
 - Track issue resolution progress by community
 - Access contact information
 - View statistics on reported and resolved issues
-
-## 🚀 Getting Started
 
 ### Prerequisites
 - Python 3.8+
@@ -133,7 +131,7 @@ Manages community information and provides access to reliable local data.
    - Communities Page: http://127.0.0.1:8000/communities/
    - Admin Panel: http://127.0.0.1:8000/admin/
 
-## 📋 URL Patterns
+##  URL Patterns
 
 ### Issues App (`/issues/`)
 - `/issues/` - List all reported issues
@@ -146,7 +144,7 @@ Manages community information and provides access to reliable local data.
 ### Admin
 - `/admin/` - Django administration panel
 
-## 🗄️ Database Models
+## Database Models
 
 ### Issue Model
 ```python
@@ -177,17 +175,17 @@ Manages community information and provides access to reliable local data.
 - updated_at: DateTimeField (auto)
 ```
 
-## 🎨 Features
+##  Features
 
-✅ **Issue Reporting** - Users can view all reported issues
-✅ **Community Information** - Access local community details
-✅ **Progress Tracking** - Monitor issue resolution status
-✅ **Filtering & Search** - Filter issues by type, status, and priority
-✅ **Statistics** - View community issue statistics
-✅ **Admin Panel** - Manage issues and communities through Django admin
-✅ **Responsive Design** - Modern, user-friendly interface
+ **Issue Reporting** - Users can view all reported issues
+ **Community Information** - Access local community details
+ **Progress Tracking** - Monitor issue resolution status
+ **Filtering & Search** - Filter issues by type, status, and priority
+ **Statistics** - View community issue statistics
+ **Admin Panel** - Manage issues and communities through Django admin
+**Responsive Design** - Modern, user-friendly interface
 
-## 🔐 Security Notes
+##  Security Notes
 
 - Change `SECRET_KEY` in settings.py before production deployment
 - Set `DEBUG = False` in production
@@ -195,14 +193,14 @@ Manages community information and provides access to reliable local data.
 - Use HTTPS in production
 - Store sensitive data in environment variables
 
-## 📱 Technologies Used
+## Technologies Used
 
 - **Backend**: Django 6.0.3
 - **Database**: SQLite (default, easily switched to PostgreSQL/MySQL)
 - **Frontend**: HTML5, CSS3
 - **Python**: 3.14.3
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -210,11 +208,11 @@ Manages community information and provides access to reliable local data.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🔗 GitHub Repository
+##  GitHub Repository
 
 **[GitHub Link: FixMyCommunity](https://github.com/yourusername/FixMyCommunity)**
 
@@ -234,19 +232,11 @@ git branch -M main
 git push -u origin main
 ```
 
-## 💬 Support & Contact
+##  Support & Contact
 
 For issues, questions, or suggestions, please:
 - Create an issue on GitHub
 - Contact the development team
 - Email: support@fixmycommunity.local
 
-## 🙏 Acknowledgments
 
-Built to improve community engagement and service delivery in local areas, especially focusing on under-resourced communities that lack reliable communication channels for infrastructure issues.
-
----
-
-**Version**: 1.0.0  
-**Last Updated**: March 2026  
-**Status**: Active Development

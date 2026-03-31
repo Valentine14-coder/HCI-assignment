@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - FixMyCommunity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .hero-emoji {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .mission {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .mission h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .mission p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .stats {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+        
+        .stats h3 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 40px;
+            font-weight: 700;
+            color: #667eea;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .cta-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="hero-emoji">🔧</div>
+            <h1>FixMyCommunity</h1>
+            <p>Improving service delivery through transparent communication and issue tracking</p>
+        </div>
+        
+        <div class="content">
+            <div class="mission">
+                <h2>Welcome to FixMyCommunity</h2>
+                <p>
+                    A user-centered platform designed to help residents report and track service delivery issues
+                    such as water leaks, electricity faults, potholes, and waste collection problems.
+                    We make it easy to communicate with local authorities and track progress towards solutions.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📝</span>
+                    <h3>Report Issues</h3>
+                    <p>Easily report service delivery problems in your community with detailed descriptions and images.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Track Progress</h3>
+                    <p>Monitor the status of reported issues from submission to resolution in real-time.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🏘️</span>
+                    <h3>Community Info</h3>
+                    <p>Access reliable local information and contact details for your community leaders.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3>Statistics</h3>
+                    <p>View comprehensive statistics on reported and resolved issues in your area.</p>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <h3>Current System Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-number">{{ total_issues }}</span>
+                        <span class="stat-label">Total Issues</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">{{ resolved_issues }}</span>
+                        <span class="stat-label">Resolved</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">{{ pending_issues }}</span>
+                        <span class="stat-label">Pending</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="{% url 'issues:issue_list' %}" class="btn btn-primary">View All Issues</a>
+                <a href="{% url 'communities:communities_list' %}" class="btn btn-secondary">View Communities</a>
+                <a href="/admin/" class="btn btn-secondary">Admin Panel</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>FixMyCommunity</strong> - Making communities stronger through transparency</p>
+            <p>Version 1.0 | © 2026 All Rights Reserved</p>
+            <p>
+                <a href="https://github.com/yourusername/FixMyCommunity">GitHub Repository</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

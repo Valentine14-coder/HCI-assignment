@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communities - FixMyCommunity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .communities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .community-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .community-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+        
+        .community-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .community-header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+        }
+        
+        .community-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .community-location {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .community-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .community-meta {
+            font-size: 13px;
+            opacity: 0.85;
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+        
+        .community-meta strong {
+            display: block;
+            opacity: 1;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .btn-view {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-view:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+        
+        .btn-report {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-report:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+        
+        .no-communities {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .no-communities h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 15px;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏘️ FixMyCommunity - Local Communities</h1>
+        <p class="subtitle">Access reliable local information and track community service improvements</p>
+        
+        {% if communities_stats %}
+            <div class="communities-grid">
+                {% for item in communities_stats %}
+                    {% with community=item.community %}
+                        <div class="community-card">
+                            <div class="community-header">
+                                <div class="community-name">{{ community.name }}</div>
+                                <div class="community-location">📍 {{ community.location }}</div>
+                            </div>
+                            
+                            <div class="community-stats">
+                                <div class="stat">
+                                    <span class="stat-number">{{ item.total_issues }}</span>
+                                    <span class="stat-label">Total Reports</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">{{ item.resolved_issues }}</span>
+                                    <span class="stat-label">Resolved</span>
+                                </div>
+                            </div>
+                            
+                            <div class="community-meta">
+                                <strong>Contact Person:</strong> {{ community.contact_person }}
+                                <strong>Email:</strong> {{ community.contact_email }}
+                                <strong>Phone:</strong> {{ community.contact_phone }}
+                                <strong>Population:</strong> {{ community.total_residents }} residents
+                            </div>
+                            
+                            <div class="community-meta" style="margin-top: 15px;">
+                                {{ community.description }}
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <a href="{% url 'communities:community_detail' community.id %}" class="btn btn-view">View Details</a>
+                            </div>
+                        </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-communities">
+                <h3>No Communities Found</h3>
+                <p>There are currently no active communities in the system.</p>
+            </div>
+        {% endif %}
+        
+        <div class="nav-links">
+            <a href="{% url 'issues:issue_list' %}">View All Issues</a>
+            <a href="/admin/">Admin Panel</a>
+        </div>
+    </div>
+</body>
+</html>

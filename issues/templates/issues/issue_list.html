@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reported Issues - FixMyCommunity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        select, input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .issue-card {
+            background: #fff;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .issue-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .issue-type {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .issue-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin: 10px 0;
+        }
+        
+        .issue-description {
+            color: #666;
+            margin: 10px 0;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .issue-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 13px;
+            color: #999;
+        }
+        
+        .priority {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        .priority-high {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+        
+        .priority-medium {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .priority-low {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-reported {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .status-in_progress {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .status-resolved {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+        
+        .no-issues {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 FixMyCommunity - Report & Track Issues</h1>
+        <p class="subtitle">Track service delivery issues and resolution progress in your community</p>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label for="status-filter">Filter by Status</label>
+                <select id="status-filter" onchange="filterIssues()">
+                    <option value="">All Status</option>
+                    {% for value, label in status_choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="type-filter">Filter by Type</label>
+                <select id="type-filter" onchange="filterIssues()">
+                    <option value="">All Types</option>
+                    {% for value, label in type_choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        
+        {% if issues %}
+            <div class="issues-grid">
+                {% for issue in issues %}
+                    <div class="issue-card" data-status="{{ issue.status }}" data-type="{{ issue.issue_type }}">
+                        <span class="issue-type">{{ issue.get_issue_type_display }}</span>
+                        <h3 class="issue-title">{{ issue.title }}</h3>
+                        <p class="issue-description">{{ issue.description|truncatewords:20 }}</p>
+                        
+                        <div class="issue-meta">
+                            <span><strong>Location:</strong> {{ issue.location }}</span>
+                            <span><strong>Reporter:</strong> {{ issue.reporter_name }}</span>
+                        </div>
+                        
+                        <div class="issue-meta">
+                            <span class="priority priority-{% if issue.priority == 3 %}high{% elif issue.priority == 2 %}medium{% else %}low{% endif %}">
+                                Priority: {{ issue.priority }}
+                            </span>
+                            <span class="status status-{{ issue.status }}">
+                                {{ issue.get_status_display }}
+                            </span>
+                        </div>
+                        
+                        <small style="color: #aaa;">Reported: {{ issue.created_at|date:"M d, Y" }}</small>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-issues">
+                <p>No issues reported yet. Help improve your community by reporting an issue!</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
